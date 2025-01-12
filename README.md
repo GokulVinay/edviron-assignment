@@ -46,7 +46,7 @@ Your application should now be running locally on http://localhost:3000.
 
 Deployment
 The application has been deployed and can be accessed at the following link:
- deployLink: https://edviron-frontend.onrender.com
+ deployLink: [https://edviron-frontend.onrender.com](https://assign-l4uzyuaq2-gokulvinays-projects.vercel.app/)
 
  # Screenshots
 
