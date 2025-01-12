@@ -1,54 +1,31 @@
-
-import './App.css';
-import { Routes,Route } from 'react-router-dom';
-import Transactions from './Components/Transactions/Transaction';
-import React from 'react';
-
-import { useEffect, useState } from 'react';
-import Login from './Components/Login/Login';
-import SchoolData from './Components/SchoolData/SchoolData';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
+import SchoolTransactions from "./components/SchoolTransactions";
+import StatusCheck from "./components/StatusCheck";
+import { ThemeProvider } from "./context/ThemeContext";
+import "./App.css";
 
 function App() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleToken=(token)=>{
-
-    console.log('jjj')
-    localStorage.setItem('authToken',token)
-
-    setIsLoggedIn(true)
-
-  }
-
-  
-
-  useEffect(()=>{
-
-    const token=localStorage.getItem('authToken')
-
-    if(token){
-      setIsLoggedIn(true); 
-    }
-
-  },[])
-
- 
   return (
-    <div className="App">
-
-      
-      <Routes>
-
-        <Route  path='/' element={<Login  handleToken={handleToken}/>}/>
-  
- <Route path='/transactions' element={isLoggedIn?<Transactions/>:<Login   handleToken={handleToken}/>} />
-
- <Route path='/school/:collect_id' element={isLoggedIn?<SchoolData/>:<Login   handleToken={handleToken}/>}/>
-      </Routes>
-   
-    
-    </div>
+    <ThemeProvider>
+      <Router>
+        <div className="app">
+          <Navbar />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route
+                path="/school-transactions"
+                element={<SchoolTransactions />}
+              />
+              <Route path="/status-check" element={<StatusCheck />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
